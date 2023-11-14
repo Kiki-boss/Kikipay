@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>USSD Link Generator for Kikidrop</title>
+</head>
+<body>
+    <h1>USSD Link Generator for Kikidrop</h1>
+    <label for="agentPhoneNumber">Agent's Phone Number:</label>
+    <input type="text" id="agentPhoneNumber" placeholder="Enter Agent's Phone Number">
+    <br><br>
+    <label for="amount">Enter Amount:</label>
+    <input type="text" id="amount" placeholder="Enter Amount">
+    <br><br>
+    <button onclick="generateLink()">Generate USSD Link</button>
+
+    <p id="generatedLink"></p>
+
+    <script>
+        function generateLink() {
+            var agentPhoneNumber = document.getElementById('agentPhoneNumber').value;
+            var amount = document.getElementById('amount').value;
+
+            var ussdCode = '*220*' + agentPhoneNumber + '*' + amount + '#';
+
+            var link = '<a href="tel:' + encodeURIComponent(ussdCode) + '">Click to Pay Your Kikidrop Agent</a>';
+            document.getElementById('generatedLink').innerHTML = link;
+        }
+    </script>
+</body>
+</html>
