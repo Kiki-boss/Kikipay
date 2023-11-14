@@ -28,12 +28,12 @@
         }
 
         function copyLink() {
-            var link = document.createElement('textarea');
-            link.value = document.getElementById('ussdLink').getAttribute('href');
-            document.body.appendChild(link);
-            link.select();
+            var linkTag = document.createElement('textarea');
+            linkTag.value = document.getElementById('generatedLink').innerHTML;
+            document.body.appendChild(linkTag);
+            linkTag.select();
             document.execCommand('copy');
-            document.body.removeChild(link);
+            document.body.removeChild(linkTag);
             alert('Link copied to clipboard!');
         }
     </script>
