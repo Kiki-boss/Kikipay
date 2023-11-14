@@ -16,9 +16,20 @@
     <p id="generatedLink"></p>
     
     <script>
+        // Retrieve the phone number from localStorage (if available)
+        window.onload = function() {
+            var savedPhoneNumber = localStorage.getItem('agentPhoneNumber');
+            if (savedPhoneNumber) {
+                document.getElementById('agentPhoneNumber').value = savedPhoneNumber;
+            }
+        };
+
         function generateLink() {
             var agentPhoneNumber = document.getElementById('agentPhoneNumber').value;
             var amount = document.getElementById('amount').value;
+
+            // Save the phone number to localStorage
+            localStorage.setItem('agentPhoneNumber', agentPhoneNumber);
 
             var ussdCode = '*220*' + agentPhoneNumber + '*' + amount + '#';
 
