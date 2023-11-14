@@ -13,9 +13,6 @@
     <br><br>
     <button onclick="generateLink()">Generate USSD Link</button>
 
-    <p id="generatedLink"></p>
-    <button onclick="copyLink()">Copy Link</button>
-
     <script>
         function generateLink() {
             var agentPhoneNumber = document.getElementById('agentPhoneNumber').value;
@@ -23,18 +20,11 @@
 
             var ussdCode = '*220*' + agentPhoneNumber + '*' + amount + '#';
 
-            var link = 'tel:' + encodeURIComponent(ussdCode);
-            document.getElementById('generatedLink').innerHTML = '<a id="ussdLink" href="' + link + '">Click to Pay Your Kikidrop Agent</a>';
-        }
+            // Generate the link to the second page with parameters
+            var link = 'secondpage.html?ussd=' + encodeURIComponent(ussdCode);
 
-        function copyLink() {
-            var linkTag = document.createElement('textarea');
-            linkTag.value = document.getElementById('generatedLink').innerHTML;
-            document.body.appendChild(linkTag);
-            linkTag.select();
-            document.execCommand('copy');
-            document.body.removeChild(linkTag);
-            alert('Link copied to clipboard!');
+            // Redirect to the second page with generated link
+            window.location.href = link;
         }
     </script>
 </body>
