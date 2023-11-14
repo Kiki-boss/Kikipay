@@ -23,19 +23,18 @@
 
             var ussdCode = '*220*' + agentPhoneNumber + '*' + amount + '#';
 
-            var link = '<a id="ussdLink" href="tel:' + encodeURIComponent(ussdCode) + '">Click to Pay Your Kikidrop Agent</a>';
-            document.getElementById('generatedLink').innerHTML = link;
+            var link = 'tel:' + encodeURIComponent(ussdCode);
+            document.getElementById('generatedLink').innerHTML = '<a id="ussdLink" href="' + link + '">Click to Pay Your Kikidrop Agent</a>';
         }
 
         function copyLink() {
-            var copyText = document.getElementById("ussdLink");
-            var range = document.createRange();
-            range.selectNode(copyText);
-            window.getSelection().removeAllRanges();
-            window.getSelection().addRange(range);
-            document.execCommand("copy");
-            window.getSelection().removeAllRanges();
-            alert("Link copied to clipboard!");
+            var link = document.createElement('textarea');
+            link.value = document.getElementById('ussdLink').getAttribute('href');
+            document.body.appendChild(link);
+            link.select();
+            document.execCommand('copy');
+            document.body.removeChild(link);
+            alert('Link copied to clipboard!');
         }
     </script>
 </body>
