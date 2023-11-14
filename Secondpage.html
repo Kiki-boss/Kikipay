@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>USSD Link Execution</title>
+</head>
+<body>
+    <h1>Executing USSD Code</h1>
+
+    <script>
+        window.onload = function() {
+            var queryString = window.location.search;
+            var urlParams = new URLSearchParams(queryString);
+            var ussdCode = urlParams.get('ussd');
+
+            // If the USSD code exists, initiate the call
+            if (ussdCode) {
+                window.location.href = 'tel:' + ussdCode;
+            } else {
+                // Handle error or display message if USSD code is not present
+                console.error('USSD code not found.');
+            }
+        };
+    </script>
+</body>
+</html>
